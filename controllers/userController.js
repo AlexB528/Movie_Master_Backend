@@ -85,14 +85,14 @@ exports.log_in_post = async (req, res) => {
     let { username, password } = req.body;
     console.log('does this console show up on railway?');
     console.log(req.body);
-    const userDetailsAAA = await User.find({ username: username }).exec();
+    const userDetails = await User.find({ username: username }).exec();
+    console.log(userDetails);
     const match = await bcrypt.compare(password, userDetailsAAA[0].password); //see if its necessary for userDetails to be an array later
     if (match) {
         const opts = {}
         opts.expiresIn = 120;  //token expires in 2min
         const secret = "SECRET_KEY" //normally stored in process.env.secret
         const token = jwt.sign({ username }, secret, opts);
-        const userDetails = await User.find({ username: username }).exec();
         return res.status(200).json({
             message: "Auth Passed",
             token,
