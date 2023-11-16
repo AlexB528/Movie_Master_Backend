@@ -17,6 +17,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'SECRET_KEY'; //normally store this in process.env.secret
+const User = require("../models/user");
 
 module.exports = new JwtStrategy(opts, async (jwt_payload, done) => {
     const user = await User.findOne({ username: jwt_payload.username }).exec();
