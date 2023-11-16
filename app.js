@@ -28,6 +28,8 @@ async function main() {
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 20,
