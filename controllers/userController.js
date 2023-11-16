@@ -84,10 +84,7 @@ exports.sign_up_post = [
 //Handle log-in on POST
 exports.log_in_post = async (req, res) => {
     let { username, password } = req.body;
-    console.log('does this console show up on railway?');
-    console.log(req.body);
     const userDetails = await User.find({ username: username }).exec();
-    console.log(userDetails);
     const match = await bcrypt.compare(password, userDetails[0].password); //see if its necessary for userDetails to be an array later
     if (match) {
         const opts = {}
@@ -103,6 +100,8 @@ exports.log_in_post = async (req, res) => {
         return res.status(401).json({ message: "Auth Failed" })
     }
 };
+
+
 
 //this was just from the tutorial but I think I can delete this now
 exports.protected = passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -121,6 +120,3 @@ exports.load_User = [passport.authenticate('jwt', { session: false }), async (re
     console.log(doc)
     return res.status(200).json(doc);
 }]
-
-
-
