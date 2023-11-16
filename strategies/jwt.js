@@ -18,7 +18,8 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'SECRET_KEY';
 // opts.issuer = 'accounts.examplesoft.com';
 // opts.audience = 'yoursite.net';
-passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+
+module.exports = new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({id: jwt_payload.sub}, function(err, user) {
         if (err) {
             return done(err, false);
@@ -30,4 +31,4 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
             // or you could create a new account
         }
     });
-}));
+})
