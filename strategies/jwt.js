@@ -5,8 +5,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'SECRET_KEY'; //normally store this in process.env.secret
 
 module.exports = new JwtStrategy(opts, (jwt_payload, done) => {
-    console.log(Cookies.get('user'));
-    if (jwt_payload.username === "TParker11") {
+    if (jwt_payload.username === Cookies.get('user').username) {
         return done(null, true)
     }
     return done(null, false)
