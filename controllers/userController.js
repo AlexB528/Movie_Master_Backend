@@ -83,6 +83,8 @@ exports.sign_up_post = [
 //Handle log-in on POST
 exports.log_in_post = async (req, res) => {
     let { username, password } = req.body;
+    console.log('does this console show up on railway?');
+    console.log(req.body);
     const userDetailsAAA = await User.find({ username: username }).exec();
     const match = await bcrypt.compare(password, userDetailsAAA[0].password); //see if its necessary for userDetails to be an array later
     if (match) {
