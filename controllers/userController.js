@@ -87,7 +87,7 @@ exports.log_in_post = async (req, res) => {
     console.log(req.body);
     const userDetails = await User.find({ username: username }).exec();
     console.log(userDetails);
-    const match = await bcrypt.compare(password, userDetailsAAA[0].password); //see if its necessary for userDetails to be an array later
+    const match = await bcrypt.compare(password, userDetails[0].password); //see if its necessary for userDetails to be an array later
     if (match) {
         const opts = {}
         opts.expiresIn = 120;  //token expires in 2min
