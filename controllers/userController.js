@@ -115,8 +115,9 @@ exports.retrieve_user_favourites = [passport.authenticate('jwt', { session: fals
 }]
 
 exports.load_User = [passport.authenticate('jwt', { session: false }), async (req, res) => {
-    // console.log(req.body)
+    console.log(req.body)
     let doc = await User.find({ username:req.body.username }).exec();
+    console.log(doc)
     return res.status(200).json(doc);
 }]
 
