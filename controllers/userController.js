@@ -60,6 +60,7 @@ exports.sign_up_post = [
                     family_name: req.body.family_name,
                     username: req.body.username,
                     password: hashedPassword,
+                    favourites: [],
                 });
                 if(!errors.isEmpty()) {
                     // There are errors. Render form again with sanitized values/errors messages.
