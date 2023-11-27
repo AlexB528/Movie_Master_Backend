@@ -15,11 +15,12 @@ const RateLimit = require("express-rate-limit");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const dev_db_url = "mongodb+srv://alexbrik528:IV6KrvQF8FxgDJ7K@cluster0.9ihei4n.mongodb.net/users_and_movies?retryWrites=true&w=majority";
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+// const dev_db_url = "mongodb+srv://alexbrik528:IV6KrvQF8FxgDJ7K@cluster0.9ihei4n.mongodb.net/users_and_movies?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI // || dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
